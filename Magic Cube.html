@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			width: 300px;
+			height: 300px;
+			margin: 150px auto; 
+			perspective: 20000px;
+		}
+		.box{
+			width: 300px;
+			height: 300px;
+			transform-style: preserve-3d;
+			animation:  ro 4s linear infinite;
+
+		}
+		@keyframes ro {
+			0%{
+				transform: rotateX(0deg) rotateY(0deg);
+			}
+			100%{
+				transform: rotateX(360deg) rotateY(360deg);
+			}
+		}
+		.box-page{
+			width: 300px;
+			height: 300px;
+			position: absolute;
+			transform-style: preserve-3d;
+		}
+		.top{
+			transform: translateZ(150px);
+		}
+		.bottom{
+			transform: translateZ(-150px) rotateX(180deg);
+		}
+		.left{
+			transform: translateX(-150px) rotateY(-90deg);
+		}
+		.right{
+			transform: translateX(150px) rotateY(90deg);
+		}
+		.before{
+			transform: translateY(150px) rotateX(-90deg);
+		}
+		.after{
+			transform: translateY(-150px) rotateX(90deg);
+		}
+		.box-page div:nth-child(1){
+			animation: a1 4.5s ease-in;
+		}
+		.box-page div:nth-child(2){
+			animation: a1 4.5s ease-in 0.5s;
+		}
+		.box-page div:nth-child(3){
+			animation: a1 4.5s ease-in 1s;
+		}
+		.box-page div:nth-child(4){
+			animation: a1 4.5s ease-in 1.5s;
+		}
+		.box-page div:nth-child(5){
+			animation: a1 4.5s ease-in 2s;
+		}
+		.box-page div:nth-child(6){
+			animation: a1 4.5s ease-in 2.5s;
+		}
+		.box-page div:nth-child(7){
+			animation: a1 4.5s ease-in 3s;
+		}
+		.box-page div:nth-child(8){
+			animation: a1 4.5s ease-in 3.5s;
+		}
+		.box-page div:nth-child(9){
+			animation: a1 4.5s ease-in 4s;
+		}
+		@keyframes a1 {
+			0%{
+				transform: translateZ(0px) scale(1) rotateZ(0deg);
+			}
+			20%{
+				transform: translateZ(300px) scale(0) rotateZ(720deg); 
+			}
+			90%{
+				transform: translateZ(300px) scale(0) rotateZ(720deg);
+			}
+			100%{
+				transform: translateZ(0px) scale(1) rotateZ(0deg);
+			}
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="box">
+		<div class="box-page top"></div>
+		<div class="box-page bottom"></div>
+		<div class="box-page left"></div>
+		<div class="box-page right"></div>
+		<div class="box-page before"></div>
+		<div class="box-page after"></div>
+	</div>
+</div>
+<script>
+	var arr = document.querySelectorAll(".box-page");
+	for (var n = 0; n < arr.length ; n++) {
+		 for(var r = 0; r < 3; r++){
+		 	 for(var c = 0; c < 3; c++){
+		 	 	var divs = document.createElement("div");
+		 	 	divs.style.cssText ="width:100px; height:100px;border:2px solid #fff;box-sizing:border-box;background-color:red;position:absolute;background-image: url(img/a"+n+".jpg);background-size:300px 300px;";
+		 	 	arr[n].appendChild(divs);
+
+		 	 	divs.style.left = c*100+"px";
+		 	 	divs.style.top = r*100+"px";
+		 	 	divs.style.backgroundPositionX = -c*100+"px";
+		 	 	divs.style.backgroundPositionY = -r*100+"px";
+		 	 }
+		 }
+	}
+</script>	
+</body>
+</html>
